@@ -59,7 +59,9 @@ class HomeFragment : Fragment() {
             binding.tvTotalLabel.text = "$${String.format("%.2f", total)}"
 
             // Guardar el cálculo en el historial
-            saveCalculationToHistory("${getString(R.string.list_price)} : $listPrice, ${getString(R.string.title_discount)} : $discount%, ${getString(R.string.total_history)} : $total")
+            saveCalculationToHistory("${getString(R.string.list_price)}: $listPrice, " +
+                    "${getString(R.string.title_discount)}: $discount%, " +
+                    "${getString(R.string.total)}: $total")   
         }
     }
 
