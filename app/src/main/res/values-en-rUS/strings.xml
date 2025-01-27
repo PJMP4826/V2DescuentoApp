@@ -1,15 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Discount App</string>
+    <string name="total_to_pay">TOTAL TO PAY</string>
+    <string name="home">Home</string>
+    <string name="title_discount">Discount</string>
+    <string name="history">History</string>
     <string name="title_appName">Discount Calculator</string>
     <string name="list_price">List Price</string>
     <string name="enter_price">Enter the price</string>
     <string name="title_tax_excluded">Taxes Excluded</string>
+    <string name="title_tax_included">Taxes Included</string>
     <string name="subtotal">Subtotal</string>
     <string name="taxes">Taxes</string>
-    <string name="total_to_pay">TOTAL TO PAY</string>
-    <string name="home">Home</string>
-    <string name="title_discount">Discount</string>
     <string name="total_history">Total</string>
-    <string name="history">History</string>
-    <string name="title_tax_included">Taxes Included</string>
 </resources>

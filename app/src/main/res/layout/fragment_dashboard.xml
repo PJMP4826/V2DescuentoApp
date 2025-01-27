@@ -32,7 +32,7 @@
                     android:id="@+id/tv_history_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Historial de Cálculos"
+                    android:text="@string/history"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -46,6 +46,7 @@
         android:layout_height="450dp"
         android:layout_marginTop="16dp"
         android:background="@drawable/rounded_corners"
+        android:contentDescription="@string/app_name"
         android:elevation="4dp"
         android:padding="16dp">
 

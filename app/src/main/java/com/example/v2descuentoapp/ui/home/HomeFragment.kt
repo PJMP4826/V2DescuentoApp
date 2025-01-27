@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.v2descuentoapp.R
+import com.example.v2descuentoapp.R.string.title_discount
 import com.example.v2descuentoapp.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
@@ -57,7 +59,7 @@ class HomeFragment : Fragment() {
             binding.tvTotalLabel.text = "$${String.format("%.2f", total)}"
 
             // Guardar el cálculo en el historial
-            saveCalculationToHistory("Precio de lista: $listPrice, Descuento: $discount%, Total: $total")
+            saveCalculationToHistory("${getString(R.string.list_price)} : $listPrice, ${getString(R.string.title_discount)} : $discount%, ${getString(R.string.total_history)} : $total")
         }
     }
 
@@ -77,7 +79,7 @@ class HomeFragment : Fragment() {
             binding.tvTotalLabel.text = "$${String.format("%.2f", total)}"
 
             // Guardar el cálculo en el historial
-            saveCalculationToHistory("Precio de lista: $listPrice, Descuento: $discount%, Total: $total")
+            saveCalculationToHistory("${getString(R.string.list_price)} : $listPrice, ${getString(R.string.title_discount)} : $discount%, ${getString(R.string.total_history)} : $total")
         }
     }
 

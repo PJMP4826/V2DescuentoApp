@@ -1,4 +1,4 @@
-package com.example.v2descuentoapp.ui
+package com.example.v2descuentoapp
 
 import android.os.Bundle
 import android.view.LayoutInflater

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">App De Descuento</string>
+    <string name="home">Inicio</string>
+    <string name="history">Historial</string>
+    <string name="title_appName">Calculadora de Descuentos</string>
+    <string name="list_price">Precio de la Lista</string>
+    <string name="enter_price">Ingresar Precio</string>
+    <string name="title_tax_excluded">Impuesto Excluido</string>
+    <string name="title_tax_included">Impuesto Incluido</string>
+    <string name="title_discount">Descuento</string>
+    <string name="subtotal">Subtotal</string>
+    <string name="taxes">Impuestos</string>
+    <string name="total_to_pay">TOTAL A PAGAR</string>
+    <string name="total_history">Total</string>
+</resources>
