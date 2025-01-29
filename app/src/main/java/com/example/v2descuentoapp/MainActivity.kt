@@ -33,3 +33,5 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
     }
 }
+
+//version de 29/01/2025

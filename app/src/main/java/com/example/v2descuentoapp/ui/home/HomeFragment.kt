@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.v2descuentoapp.R
 import com.example.v2descuentoapp.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
@@ -25,6 +26,16 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Restaurar el estado si existe
+        savedInstanceState?.let {
+            binding.etListPrice.setText(it.getString("listPrice"))
+            binding.etDiscount.setText(it.getString("discount"))
+            binding.tvResultDiscountValue.text = it.getString("discountValue")
+            binding.tvResultSubtotalValue.text = it.getString("subtotalValue")
+            binding.tvResultTaxValue.text = it.getString("taxValue")
+            binding.tvTotalLabel.text = it.getString("totalValue")
+        }
+
         binding.btnExcludeTax.setOnClickListener {
             calculateDiscount(false)
         }
@@ -36,6 +47,16 @@ class HomeFragment : Fragment() {
         binding.btnTotalToPay.setOnClickListener {
             calculateTotal()
         }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putString("listPrice", binding.etListPrice.text.toString())
+        outState.putString("discount", binding.etDiscount.text.toString())
+        outState.putString("discountValue", binding.tvResultDiscountValue.text.toString())
+        outState.putString("subtotalValue", binding.tvResultSubtotalValue.text.toString())
+        outState.putString("taxValue", binding.tvResultTaxValue.text.toString())
+        outState.putString("totalValue", binding.tvTotalLabel.text.toString())
     }
 
     private fun calculateDiscount(includeTax: Boolean) {
@@ -57,7 +78,9 @@ class HomeFragment : Fragment() {
             binding.tvTotalLabel.text = "$${String.format("%.2f", total)}"
 
             // Guardar el cálculo en el historial
-            saveCalculationToHistory("Precio de lista: $listPrice, Descuento: $discount%, Total: $total")
+            saveCalculationToHistory("${getString(R.string.list_price)}: $listPrice, " +
+                    "${getString(R.string.title_discount)}: $discount%, " +
+                    "${getString(R.string.total)}: $total")
         }
     }
 
@@ -87,8 +110,6 @@ class HomeFragment : Fragment() {
         val updatedHistory = history.toMutableSet().apply { add(calculation) }
         sharedPreferences.edit().putStringSet("history", updatedHistory).apply()
     }
-
-
 
     override fun onDestroyView() {
         super.onDestroyView()

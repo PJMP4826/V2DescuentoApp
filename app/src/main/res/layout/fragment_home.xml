@@ -1,229 +1,231 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true"
     android:background="#FFF3F3"
-    android:orientation="vertical"
     android:padding="16dp">
 
-    <!-- Contenedor principal con título y campos -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/rounded_corners"
-        android:elevation="4dp"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:orientation="vertical">
 
-        <!-- Sección de título -->
+        <!-- Contenedor principal con título y campos -->
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/tv_calculator_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/title_appName"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-            </LinearLayout>
-
-
-
-        </LinearLayout>
-
-        <!-- Precio de lista -->
-        <TextView
-            android:id="@+id/tv_list_price_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="8dp"
-            android:text="@string/list_price"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-
-        <EditText
-            android:id="@+id/et_list_price"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:background="@drawable/edit_text_background"
-            android:hint="Ingrese el precio"
-            android:inputType="numberDecimal"
-            android:padding="8dp" />
+            android:background="@drawable/rounded_corners"
+            android:elevation="4dp"
+            android:orientation="vertical"
+            android:padding="16dp">
 
-        <!-- Botones de impuestos -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/btn_exclude_tax"
-                android:layout_width="0dp"
+            <!-- Sección de título -->
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_weight="1"
-                android:background="@drawable/rounded_corners"
-                android:padding="8dp"
-                android:text="Impuestos excluidos"
-                android:textColor="#FFFFFF" />
+                android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/btn_include_tax"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_weight="1"
-                android:background="@drawable/rounded_corners"
-                android:padding="8dp"
-                android:text="Impuestos Incluidos"
-                android:textColor="#000000" />
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
-        </LinearLayout>
+                    <TextView
+                        android:id="@+id/tv_calculator_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/title_appName"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
 
-        <!-- Sección de descuento -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:orientation="horizontal">
+            </LinearLayout>
 
+            <!-- Precio de lista -->
             <TextView
-                android:id="@+id/tv_discount_label"
-                android:layout_width="0dp"
+                android:id="@+id/tv_list_price_label"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Descuento:"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"
+                android:text="@string/list_price"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/et_discount"
-                android:layout_width="0dp"
+                android:id="@+id/et_list_price"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_weight="1"
+                android:layout_marginBottom="16dp"
                 android:background="@drawable/edit_text_background"
-                android:hint="0.00"
+                android:hint="@string/enter_price"
                 android:inputType="numberDecimal"
                 android:padding="8dp" />
 
+            <!-- Botones de impuestos -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btn_exclude_tax"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_corners"
+                    android:padding="8dp"
+                    android:text="@string/title_tax_excluded"
+                    android:textColor="#FFFFFF" />
+
+                <Button
+                    android:id="@+id/btn_include_tax"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_corners"
+                    android:padding="8dp"
+                    android:text="@string/title_tax_included"
+                    android:textColor="#000000" />
+            </LinearLayout>
+
+            <!-- Sección de descuento -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_discount_label"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/title_discount"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/et_discount"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/edit_text_background"
+                    android:hint="0.00"
+                    android:inputType="numberDecimal"
+                    android:padding="8dp" />
+
+                <TextView
+                    android:id="@+id/tv_discount_percent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="%"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- Contenedor con resultados -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/rounded_corners"
+            android:elevation="4dp"
+            android:orientation="vertical"
+            android:padding="16dp">
+
             <TextView
-                android:id="@+id/tv_discount_percent"
+                android:id="@+id/tv_result_discount_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:text="%"
+                android:text="@string/title_discount"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
+            <TextView
+                android:id="@+id/tv_result_discount_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="$0.00"
+                android:textColor="#FF5722"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tv_result_subtotal_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/subtotal"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_result_subtotal_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="$0.00"
+                android:textColor="#FF5722"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tv_result_tax_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/taxes"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_result_tax_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="$0.00"
+                android:textColor="#FF5722"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <!-- Sección de total a pagar -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:id="@+id/tv_total_label"
+                android:layout_width="156dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:text="$0.00"
+                android:textColor="#FF5722"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btn_total_to_pay"
+                android:layout_width="176dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_corners"
+                android:padding="16dp"
+                android:text="@string/total_to_pay"
+                android:textColor="#FFFFFF" />
         </LinearLayout>
 
     </LinearLayout>
 
-    <!-- Contenedor con resultados -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/rounded_corners"
-        android:elevation="4dp"
-        android:orientation="vertical"
-        android:padding="16dp">
-
-        <TextView
-            android:id="@+id/tv_result_discount_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Descuento:"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/tv_result_discount_value"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="$0.00"
-            android:textColor="#FF5722"
-            android:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/tv_result_subtotal_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Ingrese el Subtotal:"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/tv_result_subtotal_value"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="$0.00"
-            android:textColor="#FF5722"
-            android:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/tv_result_tax_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Impuestos:"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/tv_result_tax_value"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="$0.00"
-            android:textColor="#FF5722"
-            android:textSize="16sp" />
-    </LinearLayout>
-
-    <!-- Sección de total a pagar -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp">
-
-        <TextView
-            android:id="@+id/tv_total_label"
-            android:layout_width="156dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:text="$0.00"
-            android:textColor="#FF5722"
-            android:textSize="24sp"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/btn_total_to_pay"
-            android:layout_width="176dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/rounded_corners"
-            android:padding="16dp"
-            android:text="Total a Pagar"
-            android:textColor="#FFFFFF" />
-    </LinearLayout>
-
-</LinearLayout>
+</ScrollView>

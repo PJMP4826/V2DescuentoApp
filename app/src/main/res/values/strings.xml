@@ -11,5 +11,9 @@
     <string name="subtotal">Subtotal</string>
     <string name="taxes">Taxes</string>
     <string name="total_to_pay">TOTAL TO PAY</string>
+    <string name="history_calculation">Calculation History</string>
+    <string name="total">Total</string>
+
+
 
 </resources>

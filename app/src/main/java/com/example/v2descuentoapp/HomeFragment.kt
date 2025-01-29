@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.v2descuentoapp.databinding.FragmentHomeBinding
 import android.graphics.Color
+import com.example.v2descuentoapp.R
 
 class HomeFragment : Fragment() {
 
@@ -25,6 +26,18 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Restaurar el estado guardado
+        savedInstanceState?.let {
+            taxIncluded = it.getBoolean("taxIncluded", false)
+            binding.etListPrice.setText(it.getString("listPrice"))
+            binding.etDiscount.setText(it.getString("discount"))
+            binding.tvResultDiscountValue.text = it.getString("discountValue")
+            binding.tvResultSubtotalValue.text = it.getString("subtotalValue")
+            binding.tvResultTaxValue.text = it.getString("taxValue")
+            binding.tvTotalLabel.text = it.getString("totalValue")
+            updateButtonColors() // Actualizar colores de botones según el estado restaurado
+        }
+
         binding.btnExcludeTax.setOnClickListener {
             taxIncluded = false
             updateButtonColors()
@@ -37,6 +50,20 @@ class HomeFragment : Fragment() {
 
         binding.btnTotalToPay.setOnClickListener {
             calculateTotal()
+        }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        // Guardar el estado actual
+        outState.apply {
+            putBoolean("taxIncluded", taxIncluded)
+            putString("listPrice", binding.etListPrice.text.toString())
+            putString("discount", binding.etDiscount.text.toString())
+            putString("discountValue", binding.tvResultDiscountValue.text.toString())
+            putString("subtotalValue", binding.tvResultSubtotalValue.text.toString())
+            putString("taxValue", binding.tvResultTaxValue.text.toString())
+            putString("totalValue", binding.tvTotalLabel.text.toString())
         }
     }
 
@@ -63,10 +90,10 @@ class HomeFragment : Fragment() {
             val tax = if (taxIncluded) 0.0 else subtotal * 0.16
             val total = subtotal + tax
 
-            binding.tvResultDiscountValue.text = "$${String.format("%.2f", discountAmount)}"
-            binding.tvResultSubtotalValue.text = "$${String.format("%.2f", subtotal)}"
             binding.tvResultTaxValue.text = "$${String.format("%.2f", tax)}"
-            binding.tvTotalLabel.text = "$${String.format("%.2f", total)}"
+            binding.tvResultDiscountValue.text = "${getString(R.string.title_discount)}: $${String.format("%.2f", discountAmount)}"
+            binding.tvResultSubtotalValue.text = "${getString(R.string.list_price)}: $${String.format("%.2f", subtotal)}"
+            binding.tvTotalLabel.text = "${getString(R.string.total)}: $${String.format("%.2f", total)}"
         }
     }
 
