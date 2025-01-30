@@ -1,31 +1,50 @@
 package com.example.v2descuentoapp.ui
 
 import android.os.Bundle
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.example.v2descuentoapp.databinding.FragmentDashboardBinding
+import com.example.v2descuentoapp.databinding.ActivityHistoryBinding
 
 class HistoryActivity : AppCompatActivity() {
 
-    private lateinit var binding: FragmentDashboardBinding
+    private lateinit var binding: ActivityHistoryBinding
+    private var historyList: MutableSet<String> = mutableSetOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = FragmentDashboardBinding.inflate(layoutInflater)
+
+        binding = ActivityHistoryBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Cargar el historial desde SharedPreferences
-        val sharedPreferences = getSharedPreferences("calculation_history", MODE_PRIVATE)
-        val history = sharedPreferences.getStringSet("history", emptySet()) ?: emptySet()
+        // Restaurar historial al rotar pantalla
+        historyList = savedInstanceState?.getStringArray("history")?.toMutableSet() ?: loadHistory()
 
-        // Añadimos los cálculo al contenedor
-        for (calculation in history) {
+        // Mostrar historial en pantalla
+        displayHistory()
+    }
+
+    private fun loadHistory(): MutableSet<String> {
+        val sharedPreferences = getSharedPreferences("calculation_history", MODE_PRIVATE)
+        return sharedPreferences.getStringSet("history", emptySet())?.toMutableSet() ?: mutableSetOf()
+    }
+
+    private fun displayHistory() {
+        val historyContainer: LinearLayout? = binding.historyContainer // Verificar si existe
+        historyContainer?.removeAllViews()
+
+        for (calculation in historyList) {
             val textView = TextView(this).apply {
                 text = calculation
                 textSize = 16f
                 setPadding(16, 8, 16, 8)
             }
-            binding.historyContainer.addView(textView)
+            historyContainer?.addView(textView)
         }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putStringArray("history", historyList.toTypedArray()) // Guardar historial al rotar
     }
 }
