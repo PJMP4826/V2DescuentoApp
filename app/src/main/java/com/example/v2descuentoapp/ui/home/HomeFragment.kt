@@ -1,5 +1,6 @@
-package com.example.v2descuentoapp.ui
+package com.example.v2descuentoapp.ui.home
 
+import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,15 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import com.example.v2descuentoapp.R
 import com.example.v2descuentoapp.databinding.FragmentHomeBinding
-import com.example.v2descuentoapp.ui.home.HomeViewModel
 
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
-    private val viewModel: HomeViewModel by activityViewModels() // ViewModel compartido entre fragmentos
+    private val viewModel: HomeViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,6 +26,19 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        // Restaurar estado guardado si existe
+        savedInstanceState?.let { bundle ->
+            viewModel.updateValues(
+                bundle.getString("listPrice", ""),
+                bundle.getString("discount", ""),
+                bundle.getString("discountValue", "$0.00"),
+                bundle.getString("subtotalValue", "$0.00"),
+                bundle.getString("taxValue", "$0.00"),
+                bundle.getString("totalValue", "$0.00")
+            )
+            viewModel.setTaxIncluded(bundle.getBoolean("taxIncluded", false))
+        }
 
         // Observar cambios y actualizar la UI automáticamente
         viewModel.listPrice.observe(viewLifecycleOwner) { binding.etListPrice.setText(it) }
@@ -40,6 +52,19 @@ class HomeFragment : Fragment() {
         binding.btnExcludeTax.setOnClickListener { viewModel.setTaxIncluded(false) }
         binding.btnIncludeTax.setOnClickListener { viewModel.setTaxIncluded(true) }
         binding.btnTotalToPay.setOnClickListener { calculateTotal() }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.apply {
+            putString("listPrice", binding.etListPrice.text.toString())
+            putString("discount", binding.etDiscount.text.toString())
+            putString("discountValue", binding.tvResultDiscountValue.text.toString())
+            putString("subtotalValue", binding.tvResultSubtotalValue.text.toString())
+            putString("taxValue", binding.tvResultTaxValue.text.toString())
+            putString("totalValue", binding.tvTotalLabel.text.toString())
+            putBoolean("taxIncluded", viewModel.taxIncluded.value ?: false)
+        }
     }
 
     private fun updateButtonColors(taxIncluded: Boolean) {
@@ -69,7 +94,24 @@ class HomeFragment : Fragment() {
                 "$${String.format("%.2f", tax)}",
                 "$${String.format("%.2f", total)}"
             )
+
+            // Guardar el cálculo en SharedPreferences
+            saveCalculationToHistory(
+                "Precio: $${String.format("%.2f", listPrice)}, " +
+                        "Descuento: $discount%, " +
+                        "Total: $${String.format("%.2f", total)}"
+            )
         }
+    }
+
+    private fun saveCalculationToHistory(calculation: String) {
+        val sharedPreferences = requireContext().getSharedPreferences(
+            "calculation_history",
+            Context.MODE_PRIVATE
+        )
+        val history = sharedPreferences.getStringSet("history", mutableSetOf()) ?: mutableSetOf()
+        val updatedHistory = history.toMutableSet().apply { add(calculation) }
+        sharedPreferences.edit().putStringSet("history", updatedHistory).apply()
     }
 
     override fun onDestroyView() {
