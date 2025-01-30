@@ -9,7 +9,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingBottom="16dp">
 
         <!-- Contenedor principal con título y campos -->
         <LinearLayout
@@ -204,7 +205,8 @@
             android:orientation="horizontal"
             android:gravity="center_vertical"
             android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp">
+            android:layout_marginBottom="16dp"
+            android:paddingBottom="16dp">
 
             <TextView
                 android:id="@+id/tv_total_label"

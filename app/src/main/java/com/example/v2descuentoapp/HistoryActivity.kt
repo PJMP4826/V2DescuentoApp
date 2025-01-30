@@ -1,31 +1,42 @@
-package com.example.v2descuentoapp.ui
-
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import com.example.v2descuentoapp.databinding.FragmentDashboardBinding
 
-class HistoryActivity : AppCompatActivity() {
+class HistoryFragment : Fragment() {
 
-    private lateinit var binding: FragmentDashboardBinding
+    private var _binding: FragmentDashboardBinding? = null
+    private val binding get() = _binding!!
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = FragmentDashboardBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentDashboardBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
-        // Cargar el historial desde SharedPreferences
-        val sharedPreferences = getSharedPreferences("calculation_history", MODE_PRIVATE)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val sharedPreferences = requireContext().getSharedPreferences("calculation_history", android.content.Context.MODE_PRIVATE)
         val history = sharedPreferences.getStringSet("history", emptySet()) ?: emptySet()
 
-        // Añadimos los cálculo al contenedor
         for (calculation in history) {
-            val textView = TextView(this).apply {
+            val textView = TextView(requireContext()).apply {
                 text = calculation
                 textSize = 16f
                 setPadding(16, 8, 16, 8)
             }
             binding.historyContainer.addView(textView)
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

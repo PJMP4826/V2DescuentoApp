@@ -1,58 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFF3F3"
-    android:orientation="vertical"
-    android:padding="16dp">
+    android:fillViewport="true"
+    android:background="#FFF3F3">
 
-    <!-- Contenedor principal con título y campos -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/rounded_corners"
-        android:elevation="4dp"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="16dp"
+        android:paddingBottom="26dp">
 
-        <!-- Sección de título -->
+        <!-- Contenedor principal con título y campos -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:background="@drawable/rounded_corners"
+            android:elevation="4dp"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:layout_marginBottom="16dp">
+
+            <!-- Sección de título -->
+            <TextView
+                android:id="@+id/tv_history_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/history_calculation"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Contenedor para el historial de cálculos -->
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/rounded_corners"
+            android:elevation="4dp"
+            android:orientation="vertical"
+            android:paddingBottom="26dp"
+            android:fillViewport="true">
 
             <LinearLayout
-                android:layout_width="0dp"
+                android:id="@+id/historyContainer"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
+                android:paddingBottom="26dp"
+                android:orientation="vertical"/>
+        </ScrollView>
 
-                <TextView
-                    android:id="@+id/tv_history_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/history_calculation"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-            </LinearLayout>
-        </LinearLayout>
     </LinearLayout>
 
-    <!-- Contenedor para el historial de cálculos -->
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="450dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/rounded_corners"
-        android:elevation="4dp"
-        android:padding="16dp">
-
-        <LinearLayout
-            android:id="@+id/historyContainer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"></LinearLayout>
-    </ScrollView>
-    </LinearLayout>
+</ScrollView>
