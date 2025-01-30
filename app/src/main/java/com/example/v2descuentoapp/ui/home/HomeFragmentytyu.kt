@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import com.example.v2descuentoapp.R
 import com.example.v2descuentoapp.databinding.FragmentHomeBinding
 
-class HomeFragment : Fragment() {
+class HomeFragmentytyu : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
